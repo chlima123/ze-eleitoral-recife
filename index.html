@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promotores de Justiça Eleitorais — Zonas Eleitorais do Recife</title>
+<style>
+  :root{
+    --navy:#0E2A33; --navy-2:#163B47; --lat:#B98A2F; --lat-2:#D8AE5C;
+    --paper:#F6F4EE; --paper-2:#FFFFFF; --ink:#1B2A2E; --muted:#5E6E72;
+    --line:#DCD8CC; --chip:#0E2A33;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+       font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  header.topbar{position:relative;background:var(--navy);color:#F2EFE6;padding:34px 30px 30px}
+  header.topbar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+       background:linear-gradient(90deg,var(--lat),var(--lat-2),var(--lat))}
+  .eyebrow{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+       font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--lat-2);margin:0 0 12px}
+  h1{font-family:Fraunces,"Iowan Old Style",Georgia,"Times New Roman",serif;
+     font-weight:600;font-size:clamp(24px,3.4vw,40px);line-height:1.14;margin:0 0 10px;letter-spacing:-.01em}
+  .sub{margin:0;max-width:78ch;color:#CBD8DA;font-size:14.5px}
+  .print-btn{position:absolute;top:26px;right:26px;background:var(--lat);color:#20160A;border:0;
+     border-radius:3px;padding:9px 14px;font:600 12.5px/1 "Public Sans",sans-serif;letter-spacing:.04em;
+     cursor:pointer;text-transform:uppercase}
+  .print-btn:hover{background:var(--lat-2)}
+  main{max-width:1280px;margin:0 auto;padding:26px 30px 60px}
+  .kpis{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 22px}
+  .kpi{background:var(--paper-2);border:1px solid var(--line);border-top:3px solid var(--lat);
+      border-radius:3px;padding:12px 16px;min-width:170px}
+  .kpi b{display:block;font-family:Fraunces,Georgia,serif;font-size:26px;line-height:1.1;color:var(--navy)}
+  .kpi span{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .table-wrap{overflow:auto;max-height:none;background:var(--paper-2);border:1px solid var(--line);
+      border-radius:3px;box-shadow:0 1px 0 rgba(14,42,51,.05)}
+  table{border-collapse:collapse;width:100%;min-width:1000px}
+  thead th{position:sticky;top:0;z-index:2;background:var(--navy-2);color:#EFEDE4;text-align:left;
+      font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:12px 14px;font-weight:600}
+  tbody td{padding:14px;border-top:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even){background:#FBFAF6}
+  tbody tr:hover{background:#F3F1E8}
+  td.ze{width:112px}
+  .zenum{display:block;font-family:Fraunces,Georgia,serif;font-size:26px;color:var(--lat);line-height:1}
+  td.ze small{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  td.prom{width:250px}
+  td.prom strong{display:block;font-size:14.5px;color:var(--navy)}
+  .cargo{display:block;font-size:12.5px;color:var(--muted);margin-top:5px}
+  td.bairros{width:auto;min-width:300px}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chip{background:#EDF1F1;border:1px solid #D6DFE0;color:var(--chip);border-radius:2px;
+      padding:2px 7px;font-size:12.5px;white-space:nowrap}
+  details{margin-top:9px}
+  summary{cursor:pointer;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--lat)}
+  details p{margin:7px 0 0;font-size:12.5px;color:var(--muted);line-height:1.5}
+  td.fonte{width:300px;font-size:12px;color:var(--muted)}
+  .ato{display:block;color:var(--ink)}
+  .evid{display:block;margin-top:6px;padding-left:9px;border-left:2px solid var(--lat);font-size:11.5px;line-height:1.45}
+  section.notes{margin-top:30px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--lat);
+      border-radius:3px;padding:20px 22px}
+  section.notes h2{font-family:Fraunces,Georgia,serif;font-size:19px;margin:0 0 12px;color:var(--navy)}
+  section.notes h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--lat);margin:18px 0 8px}
+  section.notes li{font-size:13.5px;margin-bottom:7px}
+  section.notes p{font-size:13.5px;margin:0 0 10px}
+  ul.hist{columns:2;column-gap:26px;margin:0;padding-left:18px}
+  code{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:12px;background:#EDF1F1;padding:1px 4px;border-radius:2px}
+  footer{margin-top:26px;font-size:11.5px;color:var(--muted);text-align:center;letter-spacing:.04em}
+  @media (max-width:760px){header.topbar{padding:26px 18px 24px}.print-btn{position:static;margin-top:16px}
+    main{padding:18px 16px 44px}ul.hist{columns:1}}
+  @media print{
+    @page{size:A4 landscape;margin:11mm}
+    body{background:#fff;color:#000}
+    .print-btn{display:none!important}
+    header.topbar{background:#fff;color:#000;border-bottom:2px solid #000;padding:0 0 10px}
+    header.topbar::after{display:none}
+    .eyebrow{color:#666}h1{color:#000}.sub{color:#333}
+    .kpi{border:1px solid #000;background:#fff;border-top:3px solid #000}.kpi b{color:#000}
+    .table-wrap{max-height:none!important;overflow:visible!important;border:none;box-shadow:none}
+    table{min-width:0;font-size:10.5px}thead th{position:static;background:#fff;color:#000;border-bottom:2px solid #000}
+    tbody tr{page-break-inside:avoid}tbody tr:hover{background:#fff}
+    .chip{background:#fff;border:1px solid #666;color:#000}
+    .ato{color:#000}.zenum{color:#000}
+    section.notes{background:#fff;border:1px solid #000;border-left:4px solid #000;page-break-before:always}
+    footer{color:#333}
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <button class="print-btn" onclick="window.print()">Imprimir / PDF</button>
+  <p class="eyebrow">Ministério Público de Pernambuco · Diário Oficial Eletrônico</p>
+  <h1>Promotores de Justiça Eleitorais<br>Zonas Eleitorais do Recife</h1>
+  <p class="sub">As 11 zonas eleitorais com sede no Recife, o promotor(a) de Justiça eleitoral identificado para cada uma no Diário Oficial Eletrônico do MPPE e os bairros de abrangência de cada zona (TRE-PE).</p>
+</header>
+<main>
+  <div class="kpis">
+    <div class="kpi"><b>11</b><span>Zonas eleitorais no Recife</span></div>
+    <div class="kpi"><b>11</b><span>Titulares identificados no DOE</span></div>
+    <div class="kpi"><b>2026</b><span>Ato mais recente por zona</span></div>
+    <div class="kpi"><b>234</b><span>Edições do DOE varridas (out/2025–out/2026)</span></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Zona Eleitoral</th>
+          <th>Promotor(a) de Justiça Eleitoral</th>
+          <th>Bairros e áreas de abrangência</th>
+          <th>Fonte no DOE MPPE</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="ze"><span class="zenum">1ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Mainan Maria da Silva</strong><span class="cargo">10ª Promotora de Justiça Cível da Capital (3ª Entrância)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Brasília Teimosa</span><span class="chip">Pina</span><span class="chip">Cabanga</span><span class="chip">Boa Viagem (parte)</span><span class="chip">Imbiribeira (parte)</span><span class="chip">Ipsep (parte)</span></div><details><summary>limites de abrangência</summary><p>Cabanga — Av. Sul, lado direito, sentido subúrbio-centro. Boa Viagem — da Rua Bruno Veloso (sentido Pina, lado par) até a Rua Ribeiro de Brito/Viaduto Tancredo Neves/Av. Presidente Dutra. Imbiribeira — Av. Engenheiro Alves, lado esquerdo, sentido aeroporto. Ipsep — da Rua Gonçalves de Magalhães (lado esquerdo) até a Ponte Motocolombó, margeando o Rio Tejipió (margem direita).</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 069/2026, de 13/01/2026 — DOE de 14/01/2026 (Edição 1849); republicada por incorreção na Edição 1864, de 04/02/2026</span><span class="evid">Portaria de substituição que indica outro membro para a 1ª ZE “em razão das férias da Dra. Mainan Maria da Silva”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">2ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Valdecy Vieira da Silva</strong><span class="cargo">4º Promotor de Justiça Criminal da Capital (3ª Entrância)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Afogados (parte)</span><span class="chip">Jiquiá</span><span class="chip">Estância</span><span class="chip">Jardim São Paulo</span><span class="chip">Areias</span><span class="chip">Jardim Uchôa</span><span class="chip">Ipsep (parte)</span><span class="chip">Imbiribeira (parte)</span></div><details><summary>limites de abrangência</summary><p>Afogados — lado sul da Av. São Miguel, a partir da Rua Manoel Lubambo (ambos os lados). Ipsep — área entre a Av. Recife, a Rua Gonçalves de Magalhães e a Rua Rio Potengy. Imbiribeira — lado oeste da Av. Mascarenhas de Moraes, entre a Rua Eng. Alves de Souza e Afogados.</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 3.414/2025, de 02/10/2025 — DOE de 03/10/2025 (Edição 1792)</span><span class="evid">Portaria de substituição que indica outro membro para a 2ª ZE “em razão das férias do Dr. Valdecy Vieira da Silva”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">3ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Salomão Abdo Aziz Ismail Filho</strong><span class="cargo">22º Promotor de Justiça de Defesa da Cidadania da Capital (3ª Entrância)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Barro</span><span class="chip">Tejipió</span><span class="chip">Sancho</span><span class="chip">Totó</span><span class="chip">Alto da Bela Vista</span><span class="chip">Três Carneiros</span><span class="chip">Monte Verde</span><span class="chip">Vila dos Milagres</span><span class="chip">Cohab</span></div><details><summary>limites de abrangência</summary><p>Cohab — UR-1, UR-2, UR-3, UR-4, UR-5, UR-10 e UR-12, com exceção do trecho entre a BR-101 Sul (km 1215 a 1216) e as Travessas Soldado Sebastião Felício / Guaraciaba e ruas Soldado Virgílio Lúcio e Luiz Malheiros, que pertencem à 149ª ZE.</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 2.700/2026, de 13/08/2026 — DOE de 14/08/2026 (Edição 1986)</span><span class="evid">Ato que o nomeia expressamente “Promotor de Justiça de Defesa da Cidadania da Capital e Promotor Eleitoral da 3ª Zona Eleitoral da Comarca do Recife”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">4ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Selma Magda Pereira Barbosa Barreto</strong><span class="cargo">—</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">São José</span><span class="chip">Santo Antônio</span><span class="chip">Bairro do Recife</span><span class="chip">Ilha Joana Bezerra</span><span class="chip">Ilha do Leite</span><span class="chip">Coelhos</span><span class="chip">Boa Vista</span><span class="chip">Soledade</span><span class="chip">Santo Amaro</span><span class="chip">Torreão</span><span class="chip">Campo Grande</span><span class="chip">Hipódromo</span><span class="chip">Cajueiro</span><span class="chip">Campina do Barreto</span><span class="chip">Paissandu (parte leste)</span><span class="chip">Encruzilhada (parte)</span><span class="chip">Fernando de Noronha (Vilas)</span></div><details><summary>limites de abrangência</summary><p>Paissandu — área a leste da Av. Agamenon Magalhães. Encruzilhada — lado direito da Av. Norte, sentido centro-subúrbio, até a Estrada de Belém, e lado direito da Av. Beberibe até a Rua Mem de Sá. Fernando de Noronha — Vila da Conceição, Vila da Quixaba, Vila do Boldró, Vila do Trinta, Vila Floresta Nova e Vila Floresta Velha.</p></details></td>
+        <td class="fonte"><span class="ato">DOE de 15/07/2025 (Edição 1735) — Portaria de substituição “em razão das férias da Dra. Selma Magda Pereira Barbosa”</span><span class="evid">Assinou como “Promotora de Justiça Eleitoral da 4ª Zona Eleitoral” a Recomendação Eleitoral Conjunta nº 001/2022 (DOE de 11/10/2022, Edição 1094). O Distrito de Fernando de Noronha integra esta zona: a Portaria PGJ nº 2.989/2026 designou o Dr. Ivo Pereira de Lima como Promotor(a) Auxiliar para “Fernando de Noronha (Recife – 4ª Zona)”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">5ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Eduardo Henrique Borba Lessa</strong><span class="cargo">7º Promotor de Justiça Cível da Capital (3ª Entrância)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Várzea</span><span class="chip">Caxangá</span><span class="chip">Iputinga</span><span class="chip">Santana</span><span class="chip">Casa Forte</span><span class="chip">Casa Amarela</span><span class="chip">Apipucos</span><span class="chip">Dois Irmãos</span><span class="chip">Guabiraba</span><span class="chip">Córrego do Jenipapo</span><span class="chip">Brejo da Guabiraba</span></div><details><summary>limites de abrangência</summary><p>Limites: Av. Professor Moraes Rego (lado oeste), BR-232 (lado norte) e divisa Recife/Camaragibe; no Apipucos, o Rio Capibaribe (lado norte) e o bairro da Macaxeira; em Dois Irmãos/Guabiraba, a BR-101 Norte (lado oeste) e as divisas com Paulista e Camaragibe.</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 1.529/2026, de 08/05/2026 — DOE de 11/05/2026 (Edição 1925)</span><span class="evid">Portaria de substituição que indica outro membro para a 5ª ZE “em razão das férias do Dr. Eduardo Henrique Borba Lessa”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">6ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Delane Barros de Arruda Mendonça Carneiro</strong><span class="cargo">31ª Promotora de Justiça Criminal da Capital (3ª Entrância)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Casa Amarela (parte)</span><span class="chip">Parnamirim (parte)</span><span class="chip">Macaxeira</span><span class="chip">Nova Descoberta</span><span class="chip">Morro da Conceição</span><span class="chip">Vasco da Gama (quase todo)</span></div><details><summary>limites de abrangência</summary><p>Parnamirim — da Rua Desembargador Góes Cavalcanti até a Rua da Harmonia, nas ruas entre a Estrada do Encanamento e a Estrada do Arraial. Vasco da Gama — todo o bairro, exceto as Ruas Alto do Eucalipto e Alto Nossa Senhora de Fátima.</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 2.359/2026, de 15/07/2026 — DOE de 17/07/2026 (Edição 1967)</span><span class="evid">Portaria de substituição que indica outro membro para a 6ª ZE “em razão das férias da Dra. Delane Barros Mendonça Carneiro”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">7ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Eliane Gaia Alencar</strong><span class="cargo">49ª Promotora de Justiça Criminal da Capital (3ª Entrância)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Ilha do Retiro</span><span class="chip">Iputinga (parte)</span><span class="chip">Monsenhor Fabrício</span><span class="chip">Vila União</span><span class="chip">Caiara</span><span class="chip">Torre</span><span class="chip">Madalena</span><span class="chip">Prado (parte)</span><span class="chip">Cordeiro (parte)</span></div><details><summary>limites de abrangência</summary><p>Da Av. Sport Clube do Recife / Rua João Elysio Ramos até a Rua Tabaiares; a Av. Gov. Mário Covas (BR-101) do cruzamento com a Av. Caxangá até o Rio Capibaribe; margeia o Capibaribe até a Madalena; Prado/Cordeiro a partir da Av. Eng. Abdias de Carvalho até a Av. Gal. San Martin (nº 1290) e a Av. Caxangá (lado par). Faz limite com a 150ª ZE na Rua Tabaiares até a Estrada dos Remédios (nº 1640).</p></details></td>
+        <td class="fonte"><span class="ato">DOE de 11/05/2026 (Edição 1925) — Portaria de substituição “em razão das férias da Dra. Eliane Gaia Alencar”</span><span class="evid">Mesma referência em 04/02/2026 (Edição 1864, Portaria PGJ nº 317/2026).</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">8ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Paula Catherine de Lira Aziz Ismail</strong><span class="cargo">5ª Promotora de Justiça Criminal da Capital (cargo indicado nos atos de 2025)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Aflitos</span><span class="chip">Alto José do Pinho</span><span class="chip">Arruda</span><span class="chip">Capunga</span><span class="chip">Derby</span><span class="chip">Espinheiro</span><span class="chip">Graças</span><span class="chip">Jaqueira</span><span class="chip">Mangabeira</span><span class="chip">Parnamirim</span><span class="chip">Ponto de Parada</span><span class="chip">Rosarinho</span><span class="chip">Tamarineira</span><span class="chip">Paissandu (parte oeste)</span><span class="chip">Encruzilhada (parte)</span><span class="chip">Água Fria (parte)</span></div><details><summary>limites de abrangência</summary><p>Paissandu — parte a oeste da Av. Agamenon Magalhães. Encruzilhada — lado esquerdo da Av. Norte e da Av. Beberibe, sentido centro-subúrbio. Água Fria — até a Av. Beberibe (nº 2008 a 2406, lado par) e Estrada Velha de Água Fria (nº 1308 a 1826, lado par), inclusive, sentido leste.</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 2.277/2026, de 07/07/2026 — DOE de 08/07/2026 (Edição 1961)</span><span class="evid">Portaria de substituição que indica outro membro para a 8ª ZE “em razão das férias da Drª. Paula Catherine de Lira Aziz Ismail”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">9ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Natália Maria Campelo</strong><span class="cargo">14ª Promotora de Justiça de Defesa da Cidadania da Capital (3ª Entrância)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Água Fria (parte)</span><span class="chip">Alto José Bonifácio</span><span class="chip">Beberibe</span><span class="chip">Brejo de Beberibe</span><span class="chip">Bomba do Hemetério</span><span class="chip">Dois Unidos</span><span class="chip">Fundão</span><span class="chip">Linha do Tiro</span><span class="chip">Passarinho</span><span class="chip">Porto da Madeira</span><span class="chip">Vasco da Gama (parte)</span></div><details><summary>limites de abrangência</summary><p>Água Fria — Av. Beberibe (nº 1995 a 2315, lado ímpar) e Estrada Velha de Água Fria (nº 1491 a 1825, lado ímpar), lado oeste. Vasco da Gama — da Rua Nova Descoberta (nº 2353-2354 até 1845-1958) até a Rua Vasco da Gama, sentido leste, até o limite com o Alto José Bonifácio.</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 169/2026, de 22/01/2026 — DOE de 23/01/2026 (Edição 1856)</span><span class="evid">Sequência de portarias de substituição em 2025–2026 indicam outro membro para a 9ª ZE “em razão das férias da Dra. Natália Maria Campelo”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">149ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Quintino Geraldo Diniz de Melo</strong><span class="cargo">—</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Jordão Alto</span><span class="chip">Jordão Baixo</span><span class="chip">Ibura de Baixo</span><span class="chip">Boa Viagem (parte sul)</span></div><details><summary>limites de abrangência</summary><p>Boa Viagem — parte ao sul da Rua Ribeiro de Brito. Recebe, da 3ª ZE, o trecho entre a BR-101 Sul e as Travessas Soldado Sebastião Felício / Guaraciaba e ruas Soldado Virgílio Lúcio e Luiz Malheiros.</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 1.602/2026, de 18/05/2026 — DOE de 19/05/2026 (Edição 1931); republicada na Edição 1942, de 03/06/2026</span><span class="evid">Portaria de substituição que indica outro membro para a 149ª ZE “em razão das férias do Dr. Quintino Geraldo Diniz de Melo”.</span></td>
+      </tr>
+      <tr>
+        <td class="ze"><span class="zenum">150ª</span><small>Zona Eleitoral<br>Sede: Recife</small></td>
+        <td class="prom"><strong>Fernando Portela Rodrigues</strong><span class="cargo">11º Promotor de Justiça Criminal da Capital (3ª Entrância)</span></td>
+        <td class="bairros"><div class="chips"><span class="chip">Afogados (parte)</span><span class="chip">Mangueira</span><span class="chip">San Martin</span><span class="chip">Engenho do Meio</span><span class="chip">Cordeiro (parte)</span><span class="chip">Prado (parte)</span></div><details><summary>limites de abrangência</summary><p>Afogados — Rio Capibaribe (lado sul), Rua Manoel Lubambo / Av. São Miguel (lado par) / Rua Motocolombó (lado ímpar), até a Estrada dos Remédios. Mangueira — Rio Jiquiá / Linha do Metrô (lado norte). San Martin — Av. Recife / Rio Jiquiá (lado norte). Engenho do Meio — BR-101, lado esquerdo (lado da SUDENE). Cordeiro — Av. General San Martin até o nº 1315 (lado ímpar). Prado — Av. Engenheiro Abdias de Carvalho (lado esquerdo).</p></details></td>
+        <td class="fonte"><span class="ato">Portaria PGJ nº 2.648/2026, de 06/08/2026 — DOE de 07/08/2026 (Edição 1982)</span><span class="evid">Revogou a Portaria PGJ nº 2.639/2026 e indicou outro membro para a 150ª ZE “em razão das férias do Dr. Fernando Portela Rodrigues”.</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="notes">
+    <h2>Como esta lista foi apurada — e o que ela não é</h2>
+    <p>O Diário Oficial Eletrônico do MPPE <b>não publica uma relação consolidada</b> de promotores eleitorais por zona. As designações saem em atos individuais (Portarias PGJ de indicação/dispensa e as Resoluções Conjuntas PGJ/PRE). Por isso, o titular de cada zona foi reconstruído a partir do <b>ato mais recente que o aponta naquela zona</b> — em regra, a portaria que designa um substituto “em razão das férias / licença / afastamento do titular”, que nomeia o membro afastado e, com isso, o titular da zona.</p>
+
+    <h3>Base da busca</h3>
+    <ul>
+      <li><b>Fonte:</b> Diário Oficial Eletrônico do MPPE (portal.mppe.mp.br), pesquisa full-text sobre o texto extraído das edições.</li>
+      <li><b>Janela varrida:</b> 234 edições de out/2025 a out/2026 (edição 1792 a 2.024) — <b>completa</b> na janela. A janela estendida jan/2021–set/2025 foi varrida integralmente para 2023–2025; em 2021 e 2022, 220 edições (de 470) são PDFs digitalizados (imagem) e não puderam ser lidas — <b>lacuna declarada</b>, sem impacto nas datas acima.</li>
+      <li><b>Abrangência/bairros:</b> Sistema SIGWEB do TRE-PE (consulta “Zonas Eleitorais”), único registro oficial dos limites de cada zona.</li>
+    </ul>
+
+    <h3>Ressalvas que acompanham os nomes</h3>
+    <ul>
+      <li><b>Cargo:</b> as portarias de substituição nomeiam o substituto e seu cargo; o cargo do <i>titular</i> não é declarado no mesmo ato. A coluna “promotoria de origem” traz o cargo documentado nos atos do MPPE de 2026 e fica em branco quando não há ato que o declare.</li>
+      <li><b>4ª Zona (centro do Recife):</b> o último ato localizado que a vincula a um titular é de jul/2025. Em 06/10/2026 a Dra. Selma Magda Pereira Barbosa Barreto foi removida para o 26º cargo de Defesa da Cidadania da Capital — <b>é o vínculo mais frágil desta tabela</b> e merece confirmação junto à Procuradoria Regional Eleitoral.</li>
+      <li><b>Substitutos não listados:</b> atos de 2026 designaram para a 4ª Zona, no Distrito de Fernando de Noronha, o Dr. Ivo Pereira de Lima como promotor auxiliar (Portaria PGJ nº 2.989/2026).</li>
+      <li>As férias do titular não interrompem a designação eleitoral: nos períodos de afastamento quem oficia é o substituto indicado em cada portaria.</li>
+    </ul>
+
+    <h3>Promotores eleitorais da Capital em 07/10/2022 (referência histórica)</h3>
+    <p>Assinaturas da Recomendação Eleitoral Conjunta nº 001/2022 — Promotorias Eleitorais da Capital (DOE de 11/10/2022, Edição 1094):</p>
+    <ul class="hist"><li><b>3ª</b> — José Vladimir da Silva Acioli</li><li><b>5ª</b> — Jecqueline Guilherme Aymar Elihimas</li><li><b>6ª</b> — Allana Uchoa de Carvalho</li><li><b>7ª</b> — Westei Conde y Martin Júnior</li><li><b>8ª</b> — Josenildo da Costa Santos</li><li><b>9ª</b> — José Roberto da Silva</li><li><b>149ª</b> — José Edivaldo da Silva</li></ul>
+    <p style="margin-top:12px">A tabela acima reflete os <b>titulares atuais</b> (atos de 2026); a lista de 2022 serve apenas de série histórica — houve substituições, remoções e aposentadorias no intervalo (ex.: 7ª Zona, cujo titular aposentou-se em 2024).</p>
+  </section>
+
+  <footer>Apuração no Diário Oficial Eletrônico do MPPE e no TRE-PE · Recife, outubro de 2026</footer>
+</main>
+</body>
+</html>
